@@ -1,0 +1,4 @@
+exec_name = "exec_name"
+install_sh = "install.sh"
+exe_file = "example"
+package_name = "example"
