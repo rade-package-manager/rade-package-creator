@@ -99,12 +99,35 @@ fn main() {
                 }
             } else {
                 if cfg!(target_os = "macos") {
-                    Create::create_for_macos().unwrap();
+                    if let Err(e) = Create::create_for_macos(){
+                        eprintln!(
+                                "{} {}",
+                                ">>>".red().bold(),
+                                "Failed to create package".bold()
+                        );
+                        eprint!("{} {}", "Error:", e);
+                        return;
+                    }
                 } else if cfg!(target_os = "linux") {
-                    println!("Building for Linux");
-                    Create::create_for_linux().unwrap();
+                    if let Err(e) = Create::create_for_linux(){
+                        eprintln!(
+                                "{} {}",
+                                ">>>".red().bold(),
+                                "Failed to create package".bold()
+                        );
+                        eprint!("{} {}", "Error:", e);
+                        return;
+                    }
                 } else if cfg!(target_os = "windows") {
-                    Create::create_for_windows();
+                    if let Err(e) = Create::create_for_windows(){
+                        eprintln!(
+                                "{} {}",
+                                ">>>".red().bold(),
+                                "Failed to create package".bold()
+                        );
+                        eprint!("{} {}", "Error:", e);
+                        return;
+                    }
                 } else {
                     panic!("not support os");
                 }
